@@ -1,0 +1,52 @@
+.post {
+	padding: 20px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+	background: $white;
+
+	+ .post {
+		margin-top: 30px;
+	}
+
+	span {
+		display: block;
+	}
+
+	img {
+		width: 100%;
+	}
+
+	form {
+		padding-top: 20px;
+	}
+}
+
+.post-by {
+	line-height: 1;
+	margin-bottom: 0;
+}
+
+.post-head {
+	padding-bottom: 15px;
+}
+
+.post-footer {
+	padding-top: 20px;
+}
+
+.post-comments {
+	@extend %listreset;
+
+	.comment-by {
+		margin-bottom: 0;
+	}
+
+	.comment {
+		padding-left: 15px;
+	}
+
+	li {
+		+ li {
+			margin-top: 10px;
+		}
+	}
+}

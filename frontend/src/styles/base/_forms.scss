@@ -1,0 +1,95 @@
+// forms
+form,
+fieldset {
+	margin: 0;
+	padding: 0;
+	border-style: none;
+}
+
+input[type='text'],
+input[type='tel'],
+input[type='email'],
+input[type='search'],
+input[type='password'],
+input[type='number'],
+//input[type='url'],
+// input[type='date'],
+textarea {
+	width: 100%;
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	box-sizing: border-box;
+	border: 1px solid $form-element-border-color;
+	padding: $form-element-padding;
+
+	// &:hover {
+
+	// }
+
+	&:focus {
+		border-color: $form-element-focus-border-color;
+	}
+
+	&:disabled {
+		border: none;
+		background: $catskill-white;
+	}
+
+	@include placeholder {
+		color: $placeholder-color;
+	}
+}
+
+select {
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	padding: 5px;
+}
+
+textarea {
+	resize: vertical;
+	vertical-align: top;
+}
+
+button,
+input[type='button'],
+input[type='reset'],
+input[type='file'],
+input[type='submit'] {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	cursor: pointer;
+}
+
+.form-group {
+	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+
+	input[type='number'],
+	.result-field {
+		flex-grow: 1;
+	}
+
+	label,
+	.label {
+		width: 200px;
+		flex-shrink: 0;
+		text-align: right;
+		margin-right: 15px;
+		color: $black;
+	}
+}
+
+form {
+	button {
+		color: $btn-color;
+		padding: $btn-padding;
+		background: $btn-background;
+		font-size: $btn-font-size;
+		border: none;
+		margin: 5px 0;
+	}
+}
