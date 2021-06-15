@@ -24,7 +24,10 @@ const registerUser = async (req, res) => {
       if (!userExists) {
         const hash = await generateHash(password);
         const user = await new User({ first_name: fname, last_name: lname, email, password_hash: hash }).save();
-        res.status(HttpStatus.CREATED).json(user);
+
+        const allData = { ...user.attributes };
+        const { id, first_name, last_name, email: user_email } = allData;
+        res.status(HttpStatus.CREATED).json({ id, first_name, last_name, email: user_email, token: generateToken(user.attributes.id) });
       }
     } catch (error) {
       throw error;
@@ -36,6 +39,8 @@ const registerUser = async (req, res) => {
  * Get User by email
  * @param {Object} req
  * @param {Object} res
+ * @route GET /api/users/getUser
+ * @access Public
  */
 const getUser = async (req, res) => {
   const email = req.body.email || '';
@@ -43,7 +48,7 @@ const getUser = async (req, res) => {
   try {
     await new User({ email })
       .fetch()
-      .then(user => res.json(user))
+      .then(user => res.json({ id: user.attributes.id, email: user.attributes.email, fname: user.attributes.first_name, lname: user.attributes.last_name }))
       .catch(User.NotFoundError, () => {
         res.status(HttpStatus.NOT_FOUND).json({ msg: 'user not found' });
       });
@@ -56,6 +61,8 @@ const getUser = async (req, res) => {
  * Delete User by checking username and password
  * @param {Object} req
  * @param {Object} res
+ * @route DELETE /api/users/delete
+ * @access Public
  */
 const deleteUser = async (req, res) => {
   const email = req.body.email || '';
@@ -86,6 +93,8 @@ const deleteUser = async (req, res) => {
  * Authenticate user
  * @param {Object} req
  * @param {Object} res
+ * @route POST /api/users/login
+ * @access Public
  */
 const loginUser = async (req, res) => {
   const email = req.body.email || '';
@@ -97,16 +106,18 @@ const loginUser = async (req, res) => {
       .then(user => {
         let passwordIsCorrect = bcrypt.compareSync(password, user.attributes.password_hash);
         if (passwordIsCorrect) {
-          res.json({ ...user.attributes, token: generateToken(user.attributes.id) });
+          const allData = { ...user.attributes, token: generateToken(user.attributes.id) };
+          const { id, first_name, last_name, email, token } = allData;
+          res.json({ id, first_name, last_name, email, token });
         } else {
           res.status(HttpStatus.FORBIDDEN).json({ msg: 'Incorrect Credentials' });
         }
       })
       .catch(() => {
-        res.status(HttpStatus.NOT_FOUND).json({ msg: 'user not found' });
+        res.status(HttpStatus.NOT_FOUND).json({ error: 'Invalid Email or Password' });
       });
   } catch (error) {
-    throw error;
+    throw new Error('Invalid Email or Password');
   }
 };
 
