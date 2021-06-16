@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Post from '../components/Post';
+import AddPost from '../components/AddPost';
 
 const Home = ({ history }) => {
   // const dispatch = useDispatch();
@@ -14,17 +15,20 @@ const Home = ({ history }) => {
   });
 
   return (
-    <section className="homepg-section">
-      <div className="posts-container">
-        <h3>Following are the posts from other people</h3>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-      </div>
-    </section>
+    <>
+      <AddPost />
+      <section className="homepg-section">
+        <div className="posts-container">
+          <h3>Following are the posts from other people</h3>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+        </div>
+      </section>
+    </>
   );
 };
 

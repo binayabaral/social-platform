@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Post from '../components/Post';
+import AddPost from '../components/AddPost';
 
 const MyPosts = ({ history }) => {
   const userLogin = useSelector(state => state.userLogin);
@@ -12,13 +13,16 @@ const MyPosts = ({ history }) => {
   });
 
   return (
-    <section className="homepg-section">
-      <div className="posts-container">
-        <h3>Your posts:</h3>
-        <Post />
-        <Post />
-      </div>
-    </section>
+    <>
+      <AddPost />
+      <section className="homepg-section">
+        <div className="posts-container">
+          <h3>Your posts:</h3>
+          <Post />
+          <Post />
+        </div>
+      </section>
+    </>
   );
 };
 

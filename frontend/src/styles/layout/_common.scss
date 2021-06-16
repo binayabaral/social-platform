@@ -30,7 +30,7 @@ section {
 }
 
 main {
-  padding-top: 60px;
+  padding-top: 80px;
   flex-grow: 1;
 }
 
@@ -46,4 +46,19 @@ main {
   display: block;
   text-align: center;
   font-size: 18px;
+}
+
+.add-post-form {
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background: $white;
+
+  textarea {
+    margin-bottom: 5px;
+    height: 120px;
+  }
+}
+
+.text-right {
+  text-align: right;
 }

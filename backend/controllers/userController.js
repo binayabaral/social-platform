@@ -18,7 +18,7 @@ const registerUser = async (req, res) => {
     try {
       const userExists = await new User({ email })
         .fetch()
-        .then(user => res.status(400).json({ msg: 'User already Exists' }))
+        .then(user => res.status(400).json({ message: 'User already Exists' }))
         .catch(User.NotFoundError, () => {});
 
       if (!userExists) {
@@ -96,7 +96,7 @@ const deleteUser = async (req, res) => {
  * @route POST /api/users/login
  * @access Public
  */
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
   const email = req.body.email || '';
   const password = req.body.password || '';
 
@@ -110,14 +110,16 @@ const loginUser = async (req, res) => {
           const { id, first_name, last_name, email, token } = allData;
           res.json({ id, first_name, last_name, email, token });
         } else {
-          res.status(HttpStatus.FORBIDDEN).json({ msg: 'Incorrect Credentials' });
+          res.status(HttpStatus.FORBIDDEN);
+          throw new Error('Invalid Email or Password');
         }
       })
       .catch(() => {
-        res.status(HttpStatus.NOT_FOUND).json({ error: 'Invalid Email or Password' });
+        res.status(HttpStatus.FORBIDDEN);
+        throw new Error('Invalid Email or Password');
       });
   } catch (error) {
-    throw new Error('Invalid Email or Password');
+    next(error);
   }
 };
 
