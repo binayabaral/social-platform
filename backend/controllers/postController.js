@@ -76,7 +76,7 @@ const editPost = asyncHandler(async (req, res) => {
 const getAllPosts = asyncHandler(async (req, res) => {
   try {
     let posts = await Post.fetchAll({
-      withRelated: ['user'],
+      withRelated: ['user', 'comments.user'],
     });
 
     res.json(posts);

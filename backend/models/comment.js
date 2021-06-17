@@ -12,7 +12,7 @@ const Comment = bookshelf.Model.extend({
   post() {
     return this.belongsTo('Post', 'post_id');
   },
-  User() {
+  user() {
     return this.belongsTo('User', 'user_id');
   },
 });

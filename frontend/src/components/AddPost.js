@@ -14,6 +14,11 @@ const AddPost = () => {
     if (success) setPostBody('');
   }, [success]);
 
+  useEffect(() => {
+    if (success) alert('Post added successfully');
+    else if (error) alert('error');
+  }, [success, error]);
+
   const handleAddPostSubmit = e => {
     e.preventDefault();
     dispatch(addPost(postBody));
@@ -22,9 +27,7 @@ const AddPost = () => {
   return (
     <section className="add-post">
       <div className="posts-container">
-        {error.length ? <span className="info-text text-danger">{error}</span> : ''}
         {loading && <span className="info-text text-info">Loading</span>}
-        {success && <span className="info-text text-success">Posted Successfully!</span>}
         <form className="add-post-form" onSubmit={handleAddPostSubmit}>
           <textarea name="post-body" id="post-body" value={postBody} onChange={e => setPostBody(e.target.value)} required></textarea>
           <div className="text-right">

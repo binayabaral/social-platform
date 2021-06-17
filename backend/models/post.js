@@ -13,7 +13,7 @@ const Post = bookshelf.Model.extend({
     return this.belongsTo('User', 'user_id');
   },
   comments() {
-    return this.hasMany('Comment');
+    return this.hasMany('Comment', 'post_id');
   },
 });
 

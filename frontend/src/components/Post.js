@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deletePostAction, editPostAction } from '../actions/postsAction';
+import { addCommentAction } from '../actions/commentsActions';
 
 const Post = props => {
-  const { id, post_text, created_at, user } = props.post;
+  const { id, post_text, created_at, user, comments } = props.post;
 
   const dispatch = useDispatch();
 
@@ -16,7 +17,7 @@ const Post = props => {
 
   const handlePostComment = e => {
     e.preventDefault();
-    console.log({ post_id: id, comment_txt: postComment });
+    dispatch(addCommentAction(id, postComment));
     setPostComment('');
   };
 
@@ -25,18 +26,19 @@ const Post = props => {
   };
 
   const submitDelete = () => {
-    dispatch(deletePostAction(id));
+    if (window.confirm('Are you sure you want to delete this?')) dispatch(deletePostAction(id));
   };
 
   useEffect(() => {
-    if (success) setEditMode(false);
+    if (success) {
+      setEditMode(false);
+    }
   }, [success]);
 
   return (
     <div className="post">
       {error ? <span className="info-text text-danger">{error}</span> : ''}
       {loading && <span className="info-text text-info">Loading</span>}
-      {success && <span className="info-text text-success">Post Edited Successfully!</span>}
       <div className="post-head">
         <span className="post-by h5">
           {user.first_name} {user.last_name}
@@ -50,20 +52,17 @@ const Post = props => {
           <p>{post_text}</p>
         </div>
       )}
+      <span className="comments-section-separator">Comments</span>
       <div className="post-footer">
         <ul className="post-comments">
-          <li>
-            <span className="comment-by h6">Binaya Baral</span>
-            <span className="comment">I like it</span>
-          </li>
-          <li>
-            <span className="comment-by h6">Binaya Baral</span>
-            <span className="comment">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi id magni fugiat ex aliquam,</span>
-          </li>
-          <li>
-            <span className="comment-by h6">Binaya Baral</span>
-            <span className="comment">I like it</span>
-          </li>
+          {comments.map(comment => (
+            <li key={comment.id}>
+              <span className="comment-by">
+                {comment.user.first_name} {comment.user.last_name}
+              </span>
+              <span className="comment">{comment.comment_txt}</span>
+            </li>
+          ))}
         </ul>
         <form onSubmit={handlePostComment}>
           <textarea name="post-comment" value={postComment} onChange={e => setPostComment(e.target.value)}></textarea>
