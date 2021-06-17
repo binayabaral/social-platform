@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 const Post = require('../models/post');
 const HttpStatus = require('http-status-codes');
 const User = require('../models/user');
+const Comment = require('../models/comment');
 
 /**
  * Add Post
@@ -31,7 +32,13 @@ const addPost = asyncHandler(async (req, res) => {
 const removePost = asyncHandler(async (req, res) => {
   const postId = req.params.id;
   const user_id = req.userId;
-  new Post({ id: postId })
+
+  await new Comment({ post_id: postId })
+    .fetch()
+    .then(comment => comment.destroy())
+    .catch(Comment.NotFoundError, () => {});
+
+  await new Post({ id: postId })
     .fetch()
     .then(post => {
       if (post.attributes.user_id === user_id) {

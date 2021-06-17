@@ -1,47 +1,48 @@
 .header {
-	padding: 10px 0;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-	background: $white;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	z-index: 9;
+  padding: 10px 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  background: $white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
 
-	.container {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .logo {
-	font-size: 40px;
-	font-weight: 600;
-	display: block;
-	color: $jade;
-	text-decoration: none;
+  font-size: 40px;
+  font-weight: 600;
+  display: block;
+  color: $jade;
+  text-decoration: none;
 }
 
 .navigation-links {
-	@extend %listreset;
-	display: flex;
-	flex-wrap: wrap;
-	margin-left: 50px;
+  @extend %listreset;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 50px;
 
-	li {
-		+ li {
-			margin-left: 20px;
-		}
-	}
+  li {
+    + li {
+      margin-left: 20px;
+    }
+  }
 
-	a {
-		text-decoration: none;
-		color: $black;
+  a {
+    text-decoration: none;
+    color: $black;
 
-		&.current-page,
-		&:hover {
-			color: $jade;
-		}
-	}
+    &.current-page,
+    &:hover {
+      color: $jade;
+    }
+  }
 }

@@ -70,9 +70,18 @@ main {
   font-size: $btn-font-size;
   border: none;
   margin: 5px;
+  @include animate(background);
+
+  &:hover {
+    background: darken($btn-background, 10%);
+  }
 
   &.btn-danger {
     background: red;
+
+    &:hover {
+      background: darken(red, 10%);
+    }
   }
 }
 

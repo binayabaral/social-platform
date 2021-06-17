@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL } from '../constants/userConstants';
+import { POST_REMOVE } from '../constants/postsConstants';
+import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_LOGOUT } from '../constants/userConstants';
 
 export const login = (email, password) => async dispatch => {
   try {
@@ -59,4 +60,11 @@ export const register = (fname, lname, email, password) => async dispatch => {
       payload: error.response && error.response.data.message ? error.response.data.message : error.message,
     });
   }
+};
+
+export const logout = () => dispatch => {
+  localStorage.removeItem('userInformation');
+  dispatch({ type: POST_REMOVE });
+  dispatch({ type: USER_LOGOUT });
+  document.location.href = '/';
 };

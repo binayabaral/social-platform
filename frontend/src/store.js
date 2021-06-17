@@ -3,9 +3,9 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { userLoginReducer, userRegisterReducer } from './reducers/userReducers';
 import { postsAddReducer, postsDeleteReducer, postsEditReducer, postsGetReducer } from './reducers/postsReducers';
-import { commentAddReducer } from './reducers/commentsReducers';
+import { commentAddReducer, commentDeleteReducer } from './reducers/commentsReducers';
 
-const reducer = combineReducers({ userLogin: userLoginReducer, userRegister: userRegisterReducer, postsDetails: postsAddReducer, allPosts: postsGetReducer, editPost: postsEditReducer, deletePost: postsDeleteReducer, commentAdd: commentAddReducer });
+const reducer = combineReducers({ userLogin: userLoginReducer, userRegister: userRegisterReducer, postsDetails: postsAddReducer, allPosts: postsGetReducer, editPost: postsEditReducer, deletePost: postsDeleteReducer, commentAdd: commentAddReducer, commentDelete: commentDeleteReducer });
 
 const userInfoFromStorage = localStorage.getItem('userInformation') ? JSON.parse(localStorage.getItem('userInformation')) : null;
 

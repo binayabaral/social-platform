@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deletePostAction, editPostAction } from '../actions/postsAction';
-import { addCommentAction } from '../actions/commentsActions';
+import { addCommentAction, deleteCommentAction } from '../actions/commentsActions';
 
 const Post = props => {
   const { id, post_text, created_at, user, comments } = props.post;
@@ -27,6 +27,11 @@ const Post = props => {
 
   const submitDelete = () => {
     if (window.confirm('Are you sure you want to delete this?')) dispatch(deletePostAction(id));
+  };
+
+  const deleteComment = (e, comment_id) => {
+    e.preventDefault();
+    dispatch(deleteCommentAction(comment_id));
   };
 
   useEffect(() => {
@@ -61,6 +66,13 @@ const Post = props => {
                 {comment.user.first_name} {comment.user.last_name}
               </span>
               <span className="comment">{comment.comment_txt}</span>
+              {user.id === props.currentUserId || props.currentUserId === comment.user_id ? (
+                <a href="/" onClick={e => deleteComment(e, comment.id)}>
+                  delete
+                </a>
+              ) : (
+                ''
+              )}
             </li>
           ))}
         </ul>

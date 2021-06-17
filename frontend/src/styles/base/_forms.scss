@@ -87,5 +87,11 @@ form {
     font-size: $btn-font-size;
     border: none;
     margin: 5px 0;
+
+    @include animate(background);
+
+    &:hover {
+      background: darken($btn-background, 10%);
+    }
   }
 }

@@ -24,7 +24,7 @@ const Home = ({ history }) => {
       <AddPost />
       <section className="homepg-section">
         <div className="posts-container">
-          <h3>Following are the posts from other people</h3>
+          <h3>Following are the posts from Everyone</h3>
           {posts
             .slice(0)
             .reverse()
