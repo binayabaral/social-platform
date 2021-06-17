@@ -47,8 +47,8 @@ const Register = ({ history }) => {
   return (
     <section className="login">
       <div className="posts-container">
-        {error && <span>{error}</span>}
-        {loading && <span>Loading</span>}
+        {error && <span className="info-text text-danger">{error}</span>}
+        {loading && <span className="info-text text-info">Loading</span>}
         <form onSubmit={formSubmitHandler}>
           <div className="form-grp">
             <label htmlFor="register__fname">First Name:</label>

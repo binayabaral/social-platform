@@ -10,11 +10,11 @@ const TABLE_NAME = 'comments';
 const Comment = bookshelf.Model.extend({
   tableName: TABLE_NAME,
   post() {
-    return this.belongsTo(Post);
+    return this.belongsTo('Post', 'post_id');
   },
   User() {
-    return this.belongsTo(User);
+    return this.belongsTo('User', 'user_id');
   },
 });
 
-module.exports = Comment;
+module.exports = bookshelf.model('Comment', Comment);

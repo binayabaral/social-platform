@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const Post = require('../models/post');
 const HttpStatus = require('http-status-codes');
+const User = require('../models/user');
 
 /**
  * Add Post
@@ -72,4 +73,16 @@ const editPost = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { addPost, removePost, editPost };
+const getAllPosts = asyncHandler(async (req, res) => {
+  try {
+    let posts = await Post.fetchAll({
+      withRelated: ['user'],
+    });
+
+    res.json(posts);
+  } catch (error) {
+    res.status(HttpStatus.NOT_FOUND).json({ message: error.message });
+  }
+});
+
+module.exports = { addPost, removePost, editPost, getAllPosts };

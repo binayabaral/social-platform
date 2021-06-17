@@ -62,3 +62,37 @@ main {
 .text-right {
   text-align: right;
 }
+
+.btn {
+  color: $btn-color;
+  padding: $btn-padding;
+  background: $btn-background;
+  font-size: $btn-font-size;
+  border: none;
+  margin: 5px;
+
+  &.btn-danger {
+    background: red;
+  }
+}
+
+.info-text {
+  display: block;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+
+.text-success {
+  color: green;
+  background: lighten(green, 63%);
+}
+
+.text-danger {
+  color: red;
+  background: lighten(red, 43%);
+}
+
+.text-info {
+  color: blue;
+  background: lighten(blue, 63%);
+}

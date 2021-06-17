@@ -25,5 +25,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTable('users').dropTable('posts').dropTable('comments');
+  return knex.schema.dropTable('comments').dropTable('posts').dropTable('users');
 };
