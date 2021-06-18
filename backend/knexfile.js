@@ -16,7 +16,7 @@ let connection = {
  */
 module.exports = {
   connection,
-  ssl: { rejectUnauthorized: false },
+  ssl: { require: true, rejectUnauthorized: false },
   client: process.env.DB_CLIENT,
   migrations: {
     tableName: 'migrations',
