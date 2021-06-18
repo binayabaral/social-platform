@@ -66,7 +66,7 @@ const Post = props => {
                 {comment.user.first_name} {comment.user.last_name}
               </span>
               <span className="comment">{comment.comment_txt}</span>
-              {user.id === props.currentUserId || props.currentUserId === comment.user_id ? (
+              {props.currentUserId === comment.user_id ? (
                 <a href="/" onClick={e => deleteComment(e, comment.id)}>
                   delete
                 </a>
