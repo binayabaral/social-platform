@@ -1,6 +1,10 @@
 import axios from 'axios';
 import { POST_UPLOAD_REQUEST, POST_UPLOAD_SUCCESS, POST_UPLOAD_FAIL, POST_FETCH_REQUEST, POST_FETCH_SUCCESS, POST_FETCH_FAIL, POST_EDIT_REQUEST, POST_EDIT_SUCCESS, POST_EDIT_FAIL, POST_DELETE_REQUEST, POST_DELETE_SUCCESS, POST_DELETE_FAIL } from '../constants/postsConstants';
 
+/**
+ * Add Post action
+ * @param {String} post_text
+ */
 export const addPost = post_text => async (dispatch, getState) => {
   try {
     dispatch({
@@ -34,6 +38,9 @@ export const addPost = post_text => async (dispatch, getState) => {
   }
 };
 
+/**
+ * Get all Posts action
+ */
 export const getPosts = () => async (dispatch, getState) => {
   try {
     dispatch({
@@ -65,6 +72,11 @@ export const getPosts = () => async (dispatch, getState) => {
   }
 };
 
+/**
+ * Edit post action
+ * @param {Number} id
+ * @param {String} new_post_text
+ */
 export const editPostAction = (id, new_post_text) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -97,6 +109,10 @@ export const editPostAction = (id, new_post_text) => async (dispatch, getState) 
   }
 };
 
+/**
+ * Delete Post action
+ * @param {Number} id
+ */
 export const deletePostAction = id => async (dispatch, getState) => {
   try {
     dispatch({

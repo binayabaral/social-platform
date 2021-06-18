@@ -2,6 +2,11 @@ import axios from 'axios';
 import { COMMENT_ADD_FAIL, COMMENT_ADD_REQUEST, COMMENT_ADD_SUCCESS, COMMENT_DELETE_FAIL, COMMENT_DELETE_REQUEST, COMMENT_DELETE_SUCCESS } from '../constants/commentsConstants';
 import { getPosts } from './postsAction';
 
+/**
+ * Add comment action
+ * @param {Number} post_id
+ * @param {String} comment_txt
+ */
 export const addCommentAction = (post_id, comment_txt) => async (dispatch, getState) => {
   try {
     dispatch({
@@ -34,6 +39,10 @@ export const addCommentAction = (post_id, comment_txt) => async (dispatch, getSt
   }
 };
 
+/**
+ * Delete Comment Action
+ * @param {Number} comment_id
+ */
 export const deleteCommentAction = comment_id => async (dispatch, getState) => {
   try {
     dispatch({

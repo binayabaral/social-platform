@@ -2,9 +2,9 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 /**
- * @desc      Generate password hash
- * @param     {String} password
- * @returns   {Boolean} password hash
+ * Generate password hash
+ * @param {String} password
+ * @returns {Boolean} password hash
  */
 const generateHash = async password => {
   const hash = await bcrypt.hash(password, 10);
@@ -12,10 +12,10 @@ const generateHash = async password => {
 };
 
 /**
- * @desc      Check password
- * @param     {String} password
- * @param     {String} hash
- * @returns    {Boolean} password correct status
+ * Check password
+ * @param {String} password
+ * @param {String} hash
+ * @returns {Boolean} password correct status
  */
 const comparePassword = async (password, hash) => {
   try {

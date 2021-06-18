@@ -17,6 +17,5 @@ router.get(
 
 router.post('/', addComment);
 router.delete('/:id', removeComment);
-// router.put('/:id', editComment);
 
 module.exports = router;

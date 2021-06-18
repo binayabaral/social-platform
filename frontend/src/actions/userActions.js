@@ -2,6 +2,11 @@ import axios from 'axios';
 import { POST_REMOVE } from '../constants/postsConstants';
 import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_REGISTER_FAIL, USER_LOGOUT } from '../constants/userConstants';
 
+/**
+ * User Login Action
+ * @param {String} email
+ * @param {String} password
+ */
 export const login = (email, password) => async dispatch => {
   try {
     dispatch({
@@ -29,6 +34,13 @@ export const login = (email, password) => async dispatch => {
   }
 };
 
+/**
+ * Register new user action
+ * @param {String} fname
+ * @param {String} lname
+ * @param {String} email
+ * @param {String} password
+ */
 export const register = (fname, lname, email, password) => async dispatch => {
   try {
     dispatch({
@@ -62,6 +74,9 @@ export const register = (fname, lname, email, password) => async dispatch => {
   }
 };
 
+/**
+ * User Logout Action
+ */
 export const logout = () => dispatch => {
   localStorage.removeItem('userInformation');
   dispatch({ type: POST_REMOVE });

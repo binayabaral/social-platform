@@ -3,6 +3,13 @@ const User = require('../models/user');
 const asyncHandler = require('express-async-handler');
 const HttpStatus = require('http-status-codes');
 
+/**
+ * Middleware to handle authorization
+ * converts token to userID and puts userID into request object
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Function} next
+ */
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 

@@ -8,6 +8,8 @@ const Comment = require('../models/comment');
  * Add Post
  * @param {Object} req
  * @param {Object} res
+ * @route POST /api/posts
+ * @access Private
  */
 const addPost = asyncHandler(async (req, res) => {
   const { post_text } = req.body;
@@ -28,6 +30,8 @@ const addPost = asyncHandler(async (req, res) => {
  * Remove Post
  * @param {Object} req
  * @param {Object} res
+ * @route DELETE /api/posts/:id
+ * @access Private
  */
 const removePost = asyncHandler(async (req, res) => {
   const postId = req.params.id;
@@ -57,6 +61,8 @@ const removePost = asyncHandler(async (req, res) => {
  * Edit Post
  * @param {Object} req
  * @param {Object} res
+ * @route PUT /api/posts/:id
+ * @access Private
  */
 const editPost = asyncHandler(async (req, res) => {
   const postId = req.params.id;
@@ -80,6 +86,13 @@ const editPost = asyncHandler(async (req, res) => {
   }
 });
 
+/**
+ * Fetch all posts
+ * @param {Object} req
+ * @param {Object} res
+ * @route GET /api/posts
+ * @access Private
+ */
 const getAllPosts = asyncHandler(async (req, res) => {
   try {
     let posts = await Post.fetchAll({

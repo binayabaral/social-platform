@@ -6,6 +6,8 @@ const HttpStatus = require('http-status-codes');
  * Add Comment
  * @param {Object} req
  * @param {Object} res
+ * @route POST /api/comments
+ * @access Private
  */
 const addComment = asyncHandler(async (req, res) => {
   const { comment_txt, post_id } = req.body;
@@ -26,6 +28,8 @@ const addComment = asyncHandler(async (req, res) => {
  * Remove Comment
  * @param {Object} req
  * @param {Object} res
+ * @route DELETE /api/comments
+ * @access Private
  */
 const removeComment = asyncHandler(async (req, res) => {
   const commentId = req.params.id;
