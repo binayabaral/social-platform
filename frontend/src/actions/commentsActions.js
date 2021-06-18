@@ -24,7 +24,7 @@ export const addCommentAction = (post_id, comment_txt) => async (dispatch, getSt
       },
     };
 
-    const { data } = await axios.post('http://localhost:5000/api/comments', { post_id, comment_txt }, config);
+    const { data } = await axios.post('https://lf-react-node-psql.herokuapp.com/api/comments', { post_id, comment_txt }, config);
 
     dispatch({
       type: COMMENT_ADD_SUCCESS,
@@ -60,7 +60,7 @@ export const deleteCommentAction = comment_id => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`http://localhost:5000/api/comments/${comment_id}`, config);
+    const { data } = await axios.delete(`https://lf-react-node-psql.herokuapp.com/api/comments/${comment_id}`, config);
 
     dispatch({
       type: COMMENT_DELETE_SUCCESS,

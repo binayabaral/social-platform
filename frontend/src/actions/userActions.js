@@ -18,7 +18,7 @@ export const login = (email, password) => async dispatch => {
       },
     };
 
-    const { data } = await axios.post('http://localhost:5000/api/users/login', { email, password }, config);
+    const { data } = await axios.post('https://lf-react-node-psql.herokuapp.com/api/users/login', { email, password }, config);
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
@@ -53,7 +53,7 @@ export const register = (fname, lname, email, password) => async dispatch => {
       },
     };
 
-    const { data } = await axios.post('http://localhost:5000/api/users/register', { fname, lname, email, password }, config);
+    const { data } = await axios.post('https://lf-react-node-psql.herokuapp.com/api/users/register', { fname, lname, email, password }, config);
 
     dispatch({
       type: USER_REGISTER_SUCCESS,

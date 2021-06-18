@@ -22,7 +22,7 @@ export const addPost = post_text => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post('http://localhost:5000/api/posts', { post_text }, config);
+    const { data } = await axios.post('https://lf-react-node-psql.herokuapp.com/api/posts', { post_text }, config);
 
     dispatch({
       type: POST_UPLOAD_SUCCESS,
@@ -58,7 +58,7 @@ export const getPosts = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get('http://localhost:5000/api/posts', config);
+    const { data } = await axios.get('https://lf-react-node-psql.herokuapp.com/api/posts', config);
 
     dispatch({
       type: POST_FETCH_SUCCESS,
@@ -94,7 +94,7 @@ export const editPostAction = (id, new_post_text) => async (dispatch, getState) 
       },
     };
 
-    const { data } = await axios.put(`http://localhost:5000/api/posts/${id}`, { new_post_text }, config);
+    const { data } = await axios.put(`https://lf-react-node-psql.herokuapp.com/api/posts/${id}`, { new_post_text }, config);
 
     dispatch({
       type: POST_EDIT_SUCCESS,
@@ -130,7 +130,7 @@ export const deletePostAction = id => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.delete(`http://localhost:5000/api/posts/${id}`, config);
+    const { data } = await axios.delete(`https://lf-react-node-psql.herokuapp.com/api/posts/${id}`, config);
 
     dispatch({
       type: POST_DELETE_SUCCESS,
