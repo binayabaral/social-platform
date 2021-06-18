@@ -9,7 +9,7 @@ let connection = {
   database: process.env.DB_NAME,
   charset: 'utf8',
   timezone: 'UTC',
-  ssl: true,
+  ssl: { rejectUnauthorized: false },
 };
 
 /**
