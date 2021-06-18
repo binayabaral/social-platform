@@ -9,6 +9,7 @@ let connection = {
   database: process.env.DB_NAME,
   charset: 'utf8',
   timezone: 'UTC',
+  ssl: true,
 };
 
 /**
@@ -16,7 +17,6 @@ let connection = {
  */
 module.exports = {
   connection,
-  ssl: { require: true, rejectUnauthorized: false },
   client: process.env.DB_CLIENT,
   migrations: {
     tableName: 'migrations',
